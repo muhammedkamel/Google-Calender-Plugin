@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL & ~E_NOTICE);
+ini_set('error_reporting', E_ALL);
 
 
 require_once __DIR__ . '/vendor/autoload.php';
