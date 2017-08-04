@@ -5,16 +5,16 @@ require_once 'vendor/autoload.php';
 
 
 $client = new Google_Client();
-$client->setApplicationName("oauth2");
-echo '<h1>Hello World!</h1>';
-// $client->setDeveloperKey("310431182375-ne4sk8i7odm50e8336k17jort60tkkqk.apps.googleusercontent.com");
+$client->setAuthConfig('client_secret.json');
+$client->addScope(Google_Service_Drive::DRIVE);
 
-/*
-$service = new Google_Service_Books($client);
-$optParams = array('filter' => 'free-ebooks');
-$results = $service->volumes->listVolumes('Henry David Thoreau', $optParams);
+// Your redirect URI can be any registered URI, but in this example
+// we redirect back to this same page
+$redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+$client->setRedirectUri($redirect_uri);
 
-foreach ($results as $item) {
-  echo $item['volumeInfo']['title'], "<br /> \n";
+
+if (isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    echo $token;
 }
-*/
