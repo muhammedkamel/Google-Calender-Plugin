@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(-1);
-
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -19,9 +17,13 @@ define('SCOPES', implode(' ', array(
   Google_Service_Calendar::CALENDAR_READONLY)
 ));
 
+/*
+
 if (php_sapi_name() != 'cli') {
   throw new Exception('This application must be run on the command line.');
 }
+
+*/
 
 /**
  * Returns an authorized API client.
